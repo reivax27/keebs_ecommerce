@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orderDate: 2019-03-18
+  orderTotal: 9.99
+
+two:
+  orderDate: 2019-03-18
+  orderTotal: 9.99
