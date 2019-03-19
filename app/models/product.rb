@@ -4,4 +4,6 @@ class Product < ApplicationRecord
   has_many :products, through: :order_details
 
   validates :name, :description, :price, :unitStock, presence: true
+
+  mount_uploader :image, ImageUploader
 end
