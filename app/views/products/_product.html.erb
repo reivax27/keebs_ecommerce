@@ -1,0 +1,8 @@
+<div>
+  <% if product.image.present? %>
+    <p><%= image_tag(product.image.url, alt:'product.png',width: 200) %></p>
+  <% end %>
+  <h3><%= link_to product.name, product%></h3>
+  <p>Price: <%= number_to_currency product.price%> </p>
+  <p>Stock Availability: <%= product.unitStock%></p>
+</div>

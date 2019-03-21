@@ -1,2 +1,7 @@
-<h1>Categories#index</h1>
-<p>Find me in app/views/categories/index.html.erb</p>
+<h3>Types of Products we sell</h3>
+
+<ul>
+  <% @categories.each do |category| %>
+    <li><%= link_to category.name, category %> has <%= pluralize(category.products.size, 'item') %> for sale.</li>
+  <% end %>
+</ul>

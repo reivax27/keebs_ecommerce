@@ -1,2 +1,8 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h3>All <%= @category.name %></h3>
+
+<% @category.products.each do |product| %>
+  <%= render partial: 'products/product', object: product %>
+<% end %>
+
+<%= link_to 'Back', root_path%>
+

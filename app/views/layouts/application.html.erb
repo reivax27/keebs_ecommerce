@@ -10,6 +10,13 @@
   </head>
 
   <body>
+  <nav>
+      <ul class="nav">
+        <li class="nav-item"><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Categories", categories_path %></li>
+      </ul>
+  </nav>
+  <h1>welcome to keebs4weebs.ca</h1>
     <%= yield %>
   </body>
 </html>
