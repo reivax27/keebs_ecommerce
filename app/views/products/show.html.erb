@@ -1,3 +1,12 @@
-<%= render @product %>
+<div>
+  <% if @product.image.present? %>
+    <p><%= image_tag(@product.image.url, alt:'product.png',width: 200) %></p>
+  <% end %>
+  <h3><%= @product.name %></h3>
+  <p>Category: <%= link_to @product.category.name, @product.category %></p>
+  <p>Description: <%=  @product.description %></p>
+  <p>Price: <%= number_to_currency @product.price%> </p>
+  <p>Stock Availability: <%= @product.unitStock%></p>
+</div>
 
 <%= link_to 'Back', root_path%>

@@ -3,6 +3,6 @@
 <ul>
   <% @categories.each do |category| %>
     <li><%= link_to category.name, category %> has <%= pluralize(category.products.size, 'item') %> for sale.</li>
-    <%= render category.products %>
+    
   <% end %>
 </ul>
