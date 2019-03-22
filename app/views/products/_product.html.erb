@@ -1,6 +1,6 @@
 <div>
   <% if product.image.present? %>
-    <p><%= image_tag(product.image.url, alt:'product.png',width: 200) %></p>
+    <p><%= image_tag(product.image.thumbnail.url, alt:'product.png') %></p>
   <% end %>
   <h3><%= link_to product.name, product%></h3>
   <p>Price: <%= number_to_currency product.price%> </p>
