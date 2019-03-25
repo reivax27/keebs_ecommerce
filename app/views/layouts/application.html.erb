@@ -16,6 +16,12 @@
         <li><%= link_to "Categories", categories_path %></li>
       </ul>
   </nav>
+  <%= form_tag(search_results_path, method: "get") do %>
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag(:q) %>
+      <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'}) %>
+      <%= submit_tag("Search") %>
+    <% end %>
   <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>
     <%= yield %>
   </body>
