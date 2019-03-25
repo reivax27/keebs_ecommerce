@@ -16,13 +16,29 @@
         <li><%= link_to "Categories", categories_path %></li>
       </ul>
   </nav>
+  <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>
   <%= form_tag(search_results_path, method: "get") do %>
       <%= label_tag(:q, "Search for:") %>
       <%= text_field_tag(:q) %>
       <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'}) %>
       <%= submit_tag("Search") %>
     <% end %>
-  <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>
+  <p class="navbar-text pull-right">
+  <% if customer_signed_in? %>
+    Logged in as <strong><%= current_customer.email %></strong>.
+    <%= link_to 'Edit profile', edit_customer_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Logout", destroy_customer_session_path, method: :delete, :class => 'navbar-link'  %>
+  <% else %>
+    <%= link_to "Sign up", new_customer_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_customer_session_path, :class => 'navbar-link'  %>
+  <% end %>
+  </p>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
     <%= yield %>
   </body>
 </html>
