@@ -14,6 +14,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :Province %><br />
+    <%= f.select :province_id, options_from_collection_for_select(Province.all, :id, :name, :selected => resource.province_id) %>
+  </div>
+
+  <div class="field">
     <%= f.label :phone %><br />
     <%= f.number_field :phone %>
   </div>

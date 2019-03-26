@@ -14,6 +14,14 @@
       <ul class="nav">
         <li class="nav-item"><%= link_to "Home", root_path %></li>
         <li><%= link_to "Categories", categories_path %></li>
+  <% if customer_signed_in? %>
+    <li><%= link_to 'Edit profile', edit_customer_registration_path, :class => 'navbar-link' %></li>
+    <li><%= link_to "Logout", destroy_customer_session_path, method: :delete, :class => 'navbar-link'  %></li>
+    Logged in as <strong><%= current_customer.email %></strong>.
+  <% else %>
+    <li><%= link_to "Sign up", new_customer_registration_path, :class => 'navbar-link'  %></li>
+    <li><%= link_to "Login", new_customer_session_path, :class => 'navbar-link'  %></li>
+  <% end %>
       </ul>
   </nav>
   <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>
@@ -23,16 +31,6 @@
       <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'}) %>
       <%= submit_tag("Search") %>
     <% end %>
-  <p class="navbar-text pull-right">
-  <% if customer_signed_in? %>
-    Logged in as <strong><%= current_customer.email %></strong>.
-    <%= link_to 'Edit profile', edit_customer_registration_path, :class => 'navbar-link' %> |
-    <%= link_to "Logout", destroy_customer_session_path, method: :delete, :class => 'navbar-link'  %>
-  <% else %>
-    <%= link_to "Sign up", new_customer_registration_path, :class => 'navbar-link'  %> |
-    <%= link_to "Login", new_customer_session_path, :class => 'navbar-link'  %>
-  <% end %>
-  </p>
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
   <% end %>
