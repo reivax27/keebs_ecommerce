@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:index, :show]
+  get '/about_us', to: 'pages#about'
+  get '/contact_us', to: 'pages#contact'
 
   root to: 'products#index'
 end
