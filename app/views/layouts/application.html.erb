@@ -11,27 +11,30 @@
 
   <body>
   <nav>
-      <ul class="nav">
-        <li class="nav-item"><%= link_to "Home", root_path %></li>
+    <div class="nav-wrapper deep-purple lighten-1">
+    <a href="#" class="brand-logo">weebs</a>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to "Home", root_path, class:"waves-effect waves-light btn" %></li>
         <li><%= link_to "Categories", categories_path %></li>
         <li><%= link_to "About Us", '/about_us' %></li>
         <li><%= link_to "Contact Us", '/contact_us' %></li>
   <% if customer_signed_in? %>
     <li><%= link_to 'Edit profile', edit_customer_registration_path, :class => 'navbar-link' %></li>
     <li><%= link_to "Logout", destroy_customer_session_path, method: :delete, :class => 'navbar-link'  %></li>
-    Logged in as <strong><%= current_customer.email %></strong>.
+    Logged in as <strong><%= current_customer.name %></strong>(<%= current_customer.email %>).
   <% else %>
     <li><%= link_to "Sign up", new_customer_registration_path, :class => 'navbar-link'  %></li>
     <li><%= link_to "Login", new_customer_session_path, :class => 'navbar-link'  %></li>
   <% end %>
       </ul>
+    </div>
   </nav>
   <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>
   <%= form_tag(search_results_path, method: "get") do %>
       <%= label_tag(:q, "Search for:") %>
       <%= text_field_tag(:q) %>
-      <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'}) %>
-      <%= submit_tag("Search") %>
+      <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'})%>
+      <%= button_tag("Search", class: 'btn waves-effect waves-light') %>
     <% end %>
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>

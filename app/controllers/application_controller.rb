@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  # if you want to log in before accessing the site
-  # before_action :authenticate_user!
+  protect_from_forgery with: :exception
 
-  protect_from_forgery
+   # if you want to log in before accessing the site
+   # before_action :authenticate_customer!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 

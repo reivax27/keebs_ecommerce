@@ -1,8 +1,16 @@
-<div>
-  <% if product.image.present? %>
-    <p><%= image_tag(product.image.thumbnail.url, alt:'product.png') %></p>
-  <% end %>
-  <h3><%= link_to product.name, product%></h3>
-  <p>Price: <%= number_to_currency product.price%> </p>
-  <p>Stock Availability: <%= product.unitStock%></p>
+<div class="row">
+  <div class="card">
+    <% if product.image.present? %>
+      <div class="card-image">
+        <%= image_tag(product.image.thumbnail.url, alt:'product.png') %>
+      </div>
+    <% end %>
+    <div class="card-content">
+      <p>Price: <%= number_to_currency product.price%> </p>
+      <p>Stock Availability: <%= product.unitStock%></p>
+    </div>
+    <div class="card-action">
+      <p><%= link_to product.name, product, class: 'deep-purple-text lighten-1' %></p>
+    </div>
+  </div>
 </div>
