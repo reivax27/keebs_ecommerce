@@ -4,11 +4,12 @@
 
 .row {
   position: relative;
-  margin: 5px;
+  margin: 5px !important; //this overrides the default, should probably make it so that this .scss takes presedence first
   width: 200px;
   height: 400px;
-  // float: left;
+  float: left;
 }
+
 
 .card-image{
   display: block;
@@ -22,4 +23,12 @@
 .card-action {
   width: 200px;
   height: 90px;
+}
+
+.container {
+  // float: left;
+}
+
+.pagination {
+  position: static;
 }
