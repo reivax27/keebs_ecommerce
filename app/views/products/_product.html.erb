@@ -1,10 +1,11 @@
 <div class="row">
-  <div class="card">
+  <div class="card hoverable">
     <% if product.image.present? %>
       <div class="card-image">
         <%= image_tag(product.image.thumbnail.url, alt:'product.png') %>
       </div>
     <% end %>
+    <div> </div>
     <div class="card-content">
       <p>Price: <%= number_to_currency product.price%> </p>
       <p>Stock Availability: <%= product.unitStock%></p>

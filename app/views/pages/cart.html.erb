@@ -1,0 +1,39 @@
+<table class="striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @shopping_cart.each_with_index do |product, index| %>
+    <tr>
+      <td><%= image_tag(product.image.url, alt:'product.png', width: 100 )%></td>
+      <td><%= product.name %></td>
+      <td><%= number_to_currency product.price %></td>
+      <td>
+        <%= session[:shopping_cart][index]["quantity"] %>
+      </td>
+      <td>
+        <%= link_to "/products/#{product.id}/remove_from_cart", class:"waves-effect waves-light btn-small red accent-4", method: :post do %>
+          <i class="material-icons left">remove_circle_outline</i>Remove item
+        <% end %>
+      </td>
+      <td>
+        <%= link_to clear_cart_products_path, class:"waves-effect waves-light btn-small green accent-4", method: :post do %>
+          <i class="material-icons left">update</i>Update quantity
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% if session[:shopping_cart].count > 0 %>
+  <%= link_to clear_cart_products_path, class:"waves-effect waves-light btn-small blue-grey darken-3",method: :post do %>
+    <i class="material-icons left">remove_shopping_cart</i> Clear Cart
+  <% end %>
+<% end %>

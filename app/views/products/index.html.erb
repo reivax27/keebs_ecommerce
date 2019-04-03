@@ -1,5 +1,8 @@
-<h3>All Products we are selling :)</h3>
-
+<h3>All Products we are selling</h3>
+<p><%= session[:shopping_cart].inspect %></p>
+<%= debug session[:shopping_cart]%>
+<!-- <%= @shopping_cart %> -->
+<%= link_to 'Clear Cart', clear_cart_products_path, method: :post %>
 <%= paginate @products %>
 
 <div class="container">

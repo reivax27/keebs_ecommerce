@@ -21,4 +21,5 @@
 
 $(document).on("turbolinks:load", function() {
   $("select").formSelect();
+  $('.dropdown-trigger').dropdown();
 });

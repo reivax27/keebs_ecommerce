@@ -4,5 +4,6 @@
   <%= render partial: 'products/product', object: product %>
 <% end %>
 
-<%= link_to 'Back', categories_path%>
+<%= link_to 'Back', request.referer%>
+
 

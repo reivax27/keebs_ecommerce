@@ -5,6 +5,24 @@ class ApplicationController < ActionController::Base
    # before_action :authenticate_customer!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :initialize_session
+  before_action :load_cart
+
+  private
+
+  def initialize_session
+    # session[:shopping_cart] ||= []
+    session[:shopping_cart] ||= []
+  end
+
+  def load_cart
+    # id = params[:id].to_i
+    # @shopping_cart = Product.find(session[:shopping_cart])
+    @shopping_cart = []
+    session[:shopping_cart].each do |cart_item|
+      @shopping_cart << Product.find(cart_item['id'])
+    end
+  end
 
   protected
 

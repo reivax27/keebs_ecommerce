@@ -5,8 +5,9 @@
   <h3><%= @product.name %></h3>
   <p>Category: <%= link_to @product.category.name, @product.category %></p>
   <p>Description: <%=  @product.description %></p>
-  <p>Price: <%= number_to_currency @product.price%> </p>
+  <p>Price: <%= number_to_currency @product.price%></p>
   <p>Stock Availability: <%= @product.unitStock%></p>
+  <p><%= link_to 'Add to Cart', add_to_cart_product_path(@product), method: :post %></p>
 </div>
 
 <%= link_to 'Back', root_path%>
