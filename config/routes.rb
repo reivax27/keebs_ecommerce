@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/about_us', to: 'pages#about'
   get '/contact_us', to: 'pages#contact'
   get '/cart', to: 'pages#cart'
+  get '/checkout', to: 'orders#checkout'
+  get '/order_details', to: 'orders#save_order'
 
   root to: 'products#index'
 end

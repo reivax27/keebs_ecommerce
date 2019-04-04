@@ -1,0 +1,30 @@
+<h1>Checkout page</h1>
+
+<%= debug current_customer%>
+
+<p>Name: <%= current_customer.name %></p>
+<p>Address: <%= current_customer.address %></p>
+<p>Province: <%= @province.name %></p>
+
+<table class="striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% session[:shopping_cart].each_with_index do |product, index| %>
+    <tr>
+      <td><%= Product.find(product["id"]).name %></td>
+      <td><%= number_to_currency Product.find(product["id"]).price %></td>
+      <td><%= session[:shopping_cart][index]["quantity"] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<p>Total: <%= number_to_currency session[:subtotal] %></p>
+<%= link_to '/checkout', class:"waves-effect waves-light btn-small light-green darken-4" do %>
+  <i class="material-icons left">payment</i>Give Money
+<% end %>

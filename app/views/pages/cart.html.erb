@@ -18,7 +18,7 @@
       <td>
         <%= form_tag("/products/#{product.id}/update_cart", method: "post") do %>
         <div class="input-field col s5">
-          <%= number_field_tag(:quantity, session[:shopping_cart][index]["quantity"]) %>
+          <%= number_field_tag(:quantity, session[:shopping_cart][index]["quantity"], min: 1) %>
           <%= button_tag("Update",class: "btn waves-effect waves-light")%>
         </div>
         <% end %>
@@ -42,7 +42,7 @@
   <%= link_to clear_cart_products_path, class:"waves-effect waves-light btn-small blue-grey darken-3",method: :post do %>
     <i class="material-icons left">remove_shopping_cart</i> Clear Cart
   <% end %>
-  <%= link_to '#', class:"waves-effect waves-light btn-small green darken-3",method: :post do %>
+  <%= link_to '/checkout', class:"waves-effect waves-light btn-small green darken-3" do %>
     <i class="material-icons left">shopping_basket</i> Checkout
   <% end %>
 <% end %>
