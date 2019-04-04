@@ -7,7 +7,17 @@
   <p>Description: <%=  @product.description %></p>
   <p>Price: <%= number_to_currency @product.price%></p>
   <p>Stock Availability: <%= @product.unitStock%></p>
-  <p><%= link_to 'Add to Cart', add_to_cart_product_path(@product), method: :post %></p>
+  <%= form_tag(add_to_cart_product_path, method: "post") do %>
+      <div class="ss">
+        <div class="input-field col s5">
+          <%= label_tag(:quantity, "Quantity") %>
+          <%= number_field_tag(:quantity, 1, min: 1) %>
+          <%= button_tag("Add",class: "btn waves-effect waves-light")%>
+          <%= link_to 'Back', root_path%>
+        </div>
+      </div>
+  <% end %>
+  <!-- <p><%= link_to 'Add to Cart', add_to_cart_product_path(@product), method: :post %></p> -->
 </div>
 
-<%= link_to 'Back', root_path%>
+

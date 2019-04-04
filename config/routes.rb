@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       post :add_to_cart
       post :remove_from_cart
+      post :update_cart
     end
     collection do
       post :clear_cart

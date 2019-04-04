@@ -26,12 +26,6 @@
             Categories<i class="material-icons right">arrow_drop_down</i>
           <% end %>
         </li>
-        <%= content_tag(:ul, nil, id: 'categories', class: 'dropdown-content') do %>
-          <% Category.all.each do |category| %>
-            <li><%= link_to category.name, category %></li>
-            <li class="divider" tabindex="-1"></li>
-          <% end %>
-        <% end %>
         <li><%= link_to "About Us", '/about_us' %></li>
         <li><%= link_to "Contact Us", '/contact_us' %></li>
   <% if customer_signed_in? %>
@@ -48,6 +42,12 @@
       <% end %>
     </li>
       </ul>
+      <%= content_tag(:ul, nil, id: 'categories', class: 'dropdown-content') do %>
+          <% Category.all.each do |category| %>
+            <li><%= link_to category.name, category %></li>
+            <li class="divider" tabindex="-1"></li>
+          <% end %>
+        <% end %>
     </div>
   </nav>
   <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>

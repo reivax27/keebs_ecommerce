@@ -6,7 +6,7 @@
       <th>Price</th>
       <th>Quantity</th>
       <th></th>
-      <th></th>
+      <!-- <th></th> -->
     </tr>
   </thead>
   <tbody>
@@ -16,18 +16,23 @@
       <td><%= product.name %></td>
       <td><%= number_to_currency product.price %></td>
       <td>
-        <%= session[:shopping_cart][index]["quantity"] %>
+        <%= form_tag("/products/#{product.id}/update_cart", method: "post") do %>
+        <div class="input-field col s5">
+          <%= number_field_tag(:quantity, session[:shopping_cart][index]["quantity"]) %>
+          <%= button_tag("Update",class: "btn waves-effect waves-light")%>
+        </div>
+        <% end %>
       </td>
       <td>
         <%= link_to "/products/#{product.id}/remove_from_cart", class:"waves-effect waves-light btn-small red accent-4", method: :post do %>
           <i class="material-icons left">remove_circle_outline</i>Remove item
         <% end %>
       </td>
-      <td>
+      <!-- <td>
         <%= link_to clear_cart_products_path, class:"waves-effect waves-light btn-small green accent-4", method: :post do %>
           <i class="material-icons left">update</i>Update quantity
         <% end %>
-      </td>
+      </td> -->
     </tr>
   <% end %>
   </tbody>
