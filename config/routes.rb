@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/contact_us', to: 'pages#contact'
   get '/cart', to: 'pages#cart'
   get '/checkout', to: 'orders#checkout'
-  get '/order_details', to: 'orders#save_order'
+  get '/save_order', to: 'orders#save_order'
 
   root to: 'products#index'
 end

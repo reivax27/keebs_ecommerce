@@ -1,0 +1,5 @@
+<h2>Payment successful</h2>
+<h3>Here are the order details:</h3>
+<p>Name: <%= @new_order.customer.name %></p>
+<p>Order Date: <%= @new_order.orderDate %></p>
+<p>Total amount: <%= number_to_currency @new_order.orderTotal %></p>
