@@ -38,7 +38,11 @@
   </tbody>
 </table>
 <% if session[:shopping_cart].count > 0 %>
+  <p>Subtotal: <%= number_to_currency session[:subtotal] %></p>
   <%= link_to clear_cart_products_path, class:"waves-effect waves-light btn-small blue-grey darken-3",method: :post do %>
     <i class="material-icons left">remove_shopping_cart</i> Clear Cart
+  <% end %>
+  <%= link_to '#', class:"waves-effect waves-light btn-small green darken-3",method: :post do %>
+    <i class="material-icons left">shopping_basket</i> Checkout
   <% end %>
 <% end %>

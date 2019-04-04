@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     #   # session[:shopping_cart] << id
     # end
 
-    if session[:shopping_cart].count.zero? && quantity > 0 
+    if session[:shopping_cart].count.zero? && quantity > 0
       session[:shopping_cart] << { 'id' => id, 'quantity' => quantity }
     else
       unless session[:shopping_cart].any? { |item| item['id'].to_i == id }
@@ -56,6 +56,7 @@ class ProductsController < ApplicationController
 
   def clear_cart
     session[:shopping_cart] = []
+    session[:subtotal] = []
     redirect_to root_path
   end
 end

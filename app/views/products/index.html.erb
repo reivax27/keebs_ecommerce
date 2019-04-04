@@ -1,6 +1,7 @@
 <h3>All Products we are selling</h3>
 <p><%= session[:shopping_cart].inspect %></p>
 <%= debug session[:shopping_cart]%>
+<%= debug session[:subtotal] %>
 <!-- <%= @shopping_cart %> -->
 <%= link_to 'Clear Cart', clear_cart_products_path, method: :post %>
 <%= paginate @products %>

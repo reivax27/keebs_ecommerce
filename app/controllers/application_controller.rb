@@ -13,14 +13,18 @@ class ApplicationController < ActionController::Base
   def initialize_session
     # session[:shopping_cart] ||= []
     session[:shopping_cart] ||= []
+    # session[:subtotal] ||= 0
   end
 
   def load_cart
     # id = params[:id].to_i
     # @shopping_cart = Product.find(session[:shopping_cart])
     @shopping_cart = []
+    session[:subtotal] = 0
     session[:shopping_cart].each do |cart_item|
       @shopping_cart << Product.find(cart_item['id'])
+      current_price = Product.find(cart_item['id']).price * cart_item['quantity']
+      session[:subtotal] += current_price
     end
   end
 
