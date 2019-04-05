@@ -24,7 +24,11 @@
   <% end %>
   </tbody>
 </table>
-<p>Total: <%= number_to_currency session[:subtotal] %></p>
+<p>Subtotal: <%= number_to_currency session[:subtotal] %></p>
+<p>HST/PST: <%= number_to_currency @pst_hst %></p>
+<p>GST: <%= number_to_currency @gst %></p>
+<p>Total: <%= number_to_currency session[:total] %></p>
+
 <%= link_to '/save_order', class:"waves-effect waves-light btn-small light-green darken-4" do %>
   <i class="material-icons left">payment</i>Give Money
 <% end %>
