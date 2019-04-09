@@ -5,13 +5,15 @@
       <li class="collection-header">
         <p>Order ID/#: <%= order.id%></p>
         <p>Order Date: <%= order.orderDate%></p>
+        <p>PST/HST: <%= number_to_currency order.pst_hst_amount %></p>
+        <p>GST: <%= number_to_currency order.gst_amount %></p>
         <p>Grand Total: <%= number_to_currency order.orderTotal%></p>
       </li>
       <% order.order_details.each do |order_details|%>
         <li class="collection-item avatar">
             <%= image_tag(order_details.product.image.url, alt:'product.png', width: 100 , class: "circle")%>
             <p>
-              <%= order_details.product.name %>
+              <%= order_details.product.name %> (Qty: <%= order_details.quantity%>)
             </p>
 
         <a href="#!" class="secondary-content"><i class="material-icons">navigate_next</i></a>

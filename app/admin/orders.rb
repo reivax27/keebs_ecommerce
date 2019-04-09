@@ -1,3 +1,3 @@
 ActiveAdmin.register Order do
-  permit_params :orderDate, :orderTotal
+  permit_params :orderDate, :orderTotal, :gst_amount, :pst_hst_amount
 end

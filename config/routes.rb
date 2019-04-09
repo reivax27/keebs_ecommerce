@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/checkout', to: 'orders#checkout'
   get '/save_order', to: 'orders#save_order'
   get '/orders', to: 'orders#index'
-  get '/order_details', to: 'orders#show'
+  # get '/order_details', to: 'orders#show'
 
   root to: 'products#index'
 end
