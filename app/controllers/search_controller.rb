@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def results
-    @query = params[:q]
+    @query = params[:search]
     @category = params[:category_id]
 
     if @category.empty?

@@ -1,2 +1,27 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<% if @orders.size > 0 %>
+  <h3>Mr./Mrs. <%= current_customer.name %>, here are your order history:</h3>
+  <ul class="collection with-header">
+    <% @orders.each do |order| %>
+      <li class="collection-header">
+        <p>Order ID/#: <%= order.id%></p>
+        <p>Order Date: <%= order.orderDate%></p>
+        <p>Grand Total: <%= number_to_currency order.orderTotal%></p>
+      </li>
+      <% order.order_details.each do |order_details|%>
+        <li class="collection-item avatar">
+            <%= image_tag(order_details.product.image.url, alt:'product.png', width: 100 , class: "circle")%>
+            <p>
+              <%= order_details.product.name %>
+            </p>
+
+        <a href="#!" class="secondary-content"><i class="material-icons">navigate_next</i></a>
+
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>You currently do not have any past orders. Go purchase some items <%= link_to "here",root_path %> :)</h3>
+<% end %>
+
+

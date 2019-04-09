@@ -2,9 +2,12 @@ class OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
+    # it works, but i'm not sure why customer is actually customer_id. nani??
+    @orders = Order.where(customer: current_customer.id)
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def checkout

@@ -13,7 +13,7 @@
   <body>
   <nav>
     <div class="nav-wrapper deep-purple lighten-1">
-    <%= link_to "weebs", root_path, class: "brand-logo"%>
+    <!-- <%= link_to "weebs", root_path, class: "brand-logo"%> -->
       <ul class="right hide-on-med-and-down">
         <li>
           <%= link_to root_path, class:"waves-effect waves-light btn" do %>
@@ -29,18 +29,23 @@
         <li><%= link_to "About Us", '/about_us' %></li>
         <li><%= link_to "Contact Us", '/contact_us' %></li>
   <% if customer_signed_in? %>
-    <li><%= link_to 'Edit profile', edit_customer_registration_path, :class => 'navbar-link' %></li>
+    <li><%= link_to "Edit profile", edit_customer_registration_path, :class => 'navbar-link' %></li>
     <li><%= link_to "Logout", destroy_customer_session_path, method: :delete, :class => 'navbar-link'  %></li>
-    Logged in as <strong><%= current_customer.name %></strong>
+    <li>
+      <%= link_to "/orders", class: "waves-effect waves-light btn cyan accent-4" do%>
+      <i class="material-icons center">history</i>
+      <% end %>
+    </li>
+    <li>Logged in as <strong><%= current_customer.name %></strong></li>
   <% else %>
     <li><%= link_to "Sign up", new_customer_registration_path, :class => 'navbar-link'  %></li>
     <li><%= link_to "Login", new_customer_session_path, :class => 'navbar-link'  %></li>
   <% end %>
   <li>
-      <%= link_to '/cart', class:"waves-effect waves-light btn orange accent-4" do %>
-        <i class="material-icons left">shopping_cart</i>Cart
-      <% end %>
-    </li>
+    <%= link_to '/cart', class:"waves-effect waves-light btn orange accent-4" do %>
+      <i class="material-icons left">shopping_cart</i>Cart
+    <% end %>
+  </li>
       </ul>
       <%= content_tag(:ul, nil, id: 'categories', class: 'dropdown-content') do %>
           <% Category.all.each do |category| %>
@@ -51,16 +56,18 @@
     </div>
   </nav>
   <h1>welcome to <%= link_to "keebs4weebs.ca", root_path %></h1>
-  <%= form_tag(search_results_path, method: "get") do %>
-      <%= label_tag(:q, "Search for:") %>
-      <%= text_field_tag(:q) %>
-      <div class="input-field">
-      <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'})%>
-      </div>
+  <div class="form-class" >
+<%= form_tag(search_results_path, method: "get") do %>
+      <%= label_tag(:search, "Search for:") %>
+      <%= text_field_tag(:search) %>
       <%= button_tag("Search", class: "btn waves-effect waves-light") do %>
         Submit<i class="material-icons right">send</i>
       <% end %>
+      <div class="input-field">
+      <%= select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :name),{include_blank: 'All Products'})%>
+      </div>
     <% end %>
+</div>
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
   <% end %>
