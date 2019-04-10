@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  #resources :charges
   resources :products, only: [:index, :show] do
     member do
       post :add_to_cart
@@ -20,8 +21,9 @@ Rails.application.routes.draw do
   get '/contact_us', to: 'pages#contact'
   get '/cart', to: 'pages#cart'
   get '/checkout', to: 'orders#checkout'
-  get '/save_order', to: 'orders#save_order'
+  post '/save_order', to: 'orders#pay'
   get '/orders', to: 'orders#index'
+  # get '/pay', to: 'orders#pay'
   # get '/order_details', to: 'orders#show'
 
   root to: 'products#index'

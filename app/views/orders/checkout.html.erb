@@ -29,6 +29,28 @@
 <p>GST: <%= number_to_currency session[:gst_amount] %></p>
 <p>Total: <%= number_to_currency session[:total] %></p>
 
-<%= link_to '/save_order', class:"waves-effect waves-light btn-small light-green darken-4" do %>
-  <i class="material-icons left">payment</i>Give Money
+<%= form_tag save_order_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: <%= number_to_currency session[:total] %></span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Products from keebs4weebs.ca"
+          data-amount="<%= @amount %>"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-name="<%= current_customer.name %>"
+          data-locale="auto"></script>
 <% end %>
+
+<!-- <%= link_to '/save_order', class:"waves-effect waves-light btn-small light-green darken-4" do %>
+  <i class="material-icons left">payment</i>Give Money
+<% end %> -->
+
