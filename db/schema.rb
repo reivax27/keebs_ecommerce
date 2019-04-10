@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_011009) do
+ActiveRecord::Schema.define(version: 2019_04_10_143318) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_04_09_011009) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "province_id"
+    t.string "stripe_cust_id"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["province_id"], name: "index_customers_on_province_id"
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2019_04_09_011009) do
     t.integer "customer_id"
     t.decimal "gst_amount"
     t.decimal "pst_hst_amount"
+    t.string "stripe_charge_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
