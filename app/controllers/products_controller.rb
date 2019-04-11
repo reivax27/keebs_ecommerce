@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   def index
     @products = Product.order('name').page(params[:page])
@@ -21,12 +23,10 @@ class ProductsController < ApplicationController
     #   # session[:shopping_cart] << id
     # end
 
-    if session[:shopping_cart].count.zero? && quantity > 0
+    if session[:shopping_cart].count.zero? && quantity.positive?
       session[:shopping_cart] << { 'id' => id, 'quantity' => quantity }
     else
-      unless session[:shopping_cart].any? { |item| item['id'].to_i == id }
-        session[:shopping_cart] << { 'id' => id, 'quantity' => quantity }
-      end
+      session[:shopping_cart] << { 'id' => id, 'quantity' => quantity } unless session[:shopping_cart].any? { |item| item['id'].to_i == id }
     end
 
     redirect_to root_path
@@ -36,9 +36,7 @@ class ProductsController < ApplicationController
     id = params[:id].to_i
     quantity = params[:quantity].to_i
     session[:shopping_cart].each do |item|
-      if item['id'].to_i == id
-        item['quantity'] = quantity
-      end
+      item['quantity'] = quantity if item['id'].to_i == id
     end
     redirect_back fallback_location: '/cart'
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
 
@@ -31,7 +33,7 @@ class OrdersController < ApplicationController
     # )
     order = new_order
     session[:shopping_cart].each do |product|
-      order_detail = order.order_details.new(
+      order.order_details.new(
         product_id: Product.find(product['id']).id.to_i,
         quantity: product['quantity'].to_i,
         priceOnOrder: Product.find(product['id']).price.to_d
@@ -45,17 +47,17 @@ class OrdersController < ApplicationController
     # Amount in cents
     amount = (session[:total].to_d * 100).to_i
 
-    @customer = Stripe::Customer.create({
+    @customer = Stripe::Customer.create(
       email: params[:stripeEmail],
-      source: params[:stripeToken],
-    })
+      source: params[:stripeToken]
+    )
 
-    @charge = Stripe::Charge.create({
+    @charge = Stripe::Charge.create(
       customer: @customer.id,
       amount: amount,
       description: 'Rails Stripe customer',
-      currency: 'cad',
-    })
+      currency: 'cad'
+    )
     current_cust = Customer.find(current_customer.id)
     current_cust.stripe_cust_id = @customer.id
     current_cust.save
